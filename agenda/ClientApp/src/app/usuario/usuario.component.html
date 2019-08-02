@@ -1,0 +1,53 @@
+<h3>Usuarios</h3>
+<div *ngIf="show">
+  <button type="button" (click)="nuevo()" class="btn btn-default">Nuevo</button>
+  <table class="table table-small table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Telefono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of lusu">
+        <td>{{ u.usuarioId }}</td>
+        <td>{{ u.nombre }}</td>
+        <td>{{ u.apellido }}</td>
+        <td>{{ u.telefono }}</td>
+        <td>
+          <button type="button" (click)="elige(u)" class="btn btn-small btn-default">
+            <i class="glyphicon glyphicon-edit"></i>
+          </button>
+          <button type="button" (click)="ir(u.usuarioId, u.nombre)" class="btn btn-small btn-default">
+            <i class="glyphicon glyphicon-list"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="!show">
+  <div>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="usu.nombre" class="form-control" maxlength="30" />
+    </div>
+    <div class="form-group">
+      <label>Apellidos</label>
+      <input type="text" [(ngModel)]="usu.apellido" class="form-control" maxlength="80" />
+    </div>
+    <div class="form-group">
+      <label>Teléfono</label>
+      <input type="text" [(ngModel)]="usu.telefono" class="form-control" maxlength="15" />
+    </div>
+    <button type="button" (click)="guarda()" class="btn btn-default">
+      Guardar
+    </button>
+    <button type="button" (click)="cancela()" class="btn btn-danger">
+      Regresar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<h3>Contactos de {{ usunm }}</h3>
+<div *ngIf="show">
+  <button type="button" (click)="nuevo()" class="btn btn-default">Nuevo</button>
+  <table class="table table-small table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Empresa</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of lcon">
+        <td>{{ c.contactoId }}</td>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.empresa }}</td>
+        <td>
+          <button type="button" (click)="elige(c)" class="btn btn-small btn-default">
+            <i class="glyphicon glyphicon-edit"></i>
+          </button>
+          <button type="button" (click)="borra(c.contactoId)" class="btn btn-small btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="!show">
+  <div>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="con.nombre" class="form-control" maxlength="50" />
+    </div>
+    <div class="form-group">
+      <label>Empresa</label>
+      <input type="text" [(ngModel)]="con.empresa" class="form-control" maxlength="10" />
+    </div>
+    <button type="button" (click)="guarda()" class="btn btn-default">
+      Guardar
+    </button>
+    <button type="button" (click)="cancela()" class="btn btn-danger">
+      Regresar
+    </button>
+  </div>
+  <div *ngIf="con.contactoId > 0">
+    <table class="table table-small table-striped">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Número</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" [(ngModel)]="tel.tipo" class="form-control" maxlength="15" />
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="tel.numero" class="form-control" maxlength="15" />
+          </td>
+          <td>
+            <button type="button" (click)="guardatel()" class="btn btn-success">
+              <i class="glyphicon glyphicon-arrow-down"></i>
+            </button>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tl of ltel">
+          <td>{{ tl.tipo }}</td>
+          <td>{{ tl.numero }}</td>
+          <td>
+            <button type="button" (click)="elitel(tl)" class="btn btn-warning">
+              <i class="glyphicon glyphicon-edit"></i>
+            </button>
+            <button type="button" (click)="del(tl.telefonoId)" class="btn btn-danger">
+              <i class="glyphicon glyphicon-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
