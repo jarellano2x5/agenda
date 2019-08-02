@@ -19,6 +19,7 @@ namespace agenda.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //crear tablas con nombres deseados
             modelBuilder.Entity<Usuario>().ToTable("Usuario");
             modelBuilder.Entity<Contacto>().ToTable("Contacto");
             modelBuilder.Entity<Telefono>().ToTable("Telefono");
